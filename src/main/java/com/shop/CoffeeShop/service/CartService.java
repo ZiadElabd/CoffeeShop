@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Service
@@ -25,6 +26,10 @@ public class CartService {
     public void remove_from_cart(User user, Product p) {
         log.info("removing product from db ", p.getName());
         cartRepository.deleteById(new Cart_Id(user.getUserId(), p.getProductId()));
+    }
+
+    public List<Product> getAllProducts() {
+        return cartRepository.findAll();
     }
 
 }
