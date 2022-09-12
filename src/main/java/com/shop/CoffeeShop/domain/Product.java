@@ -1,9 +1,6 @@
 package com.shop.CoffeeShop.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -20,7 +17,7 @@ import lombok.ToString;
 @Table (name = "product")
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
     private String name;
     private int quantity;

@@ -1,8 +1,5 @@
-DROP SCHEMA IF EXISTS testing;
 
-CREATE SCHEMA testing;
-
-USE testing;
+USE sql11518896;
 
 CREATE TABLE user
 (
@@ -11,9 +8,10 @@ CREATE TABLE user
   email VARCHAR(45) NOT NULL UNIQUE,
   password VARCHAR(100) NOT NULL,
   image VARCHAR(150),
-  role_id INT NOT NULL,
+  role_id INT,
   PRIMARY KEY (user_id)
 );
+
 
 CREATE TABLE role
 (
@@ -49,7 +47,7 @@ CREATE TABLE product
 (
   product_id INT NOT NULL,
   name VARCHAR(50) NOT NULL,
-  quantity INT NOT NULL,
+  quantity INT DEFAULT 0,
   small_price INT NOT NULL,
   medium_price INT NOT NULL,
   large_price INT NOT NULL,
@@ -62,11 +60,18 @@ CREATE TABLE cart
 (
   user_id INT NOT NULL,
   product_id INT NOT NULL,
+  quantity INT NOT NULL ,
   size INT NOT NULL,   # values = 1, 2, 3
   sugar INT NOT NULL,   # values = 0, 1, 2, 3
   PRIMARY KEY (user_id, product_id),
-  FOREIGN KEY (user_id) REFERENCES user(user_id),
-  FOREIGN KEY (product_id) REFERENCES product(product_id)
+  FOREIGN KEY (user_id)
+      REFERENCES user(user_id)
+      ON UPDATE CASCADE
+      ON DELETE CASCADE,
+  FOREIGN KEY (product_id)
+      REFERENCES product(product_id)
+      ON UPDATE CASCADE
+      ON DELETE CASCADE
 );
 
 
