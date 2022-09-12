@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Data
@@ -15,8 +14,10 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Table(name = "cart")
 public class Cart {
+
     @EmbeddedId
     private Cart_Id cart_id;
+    private int quantity;
     private int size;
     private int sugar;
 }

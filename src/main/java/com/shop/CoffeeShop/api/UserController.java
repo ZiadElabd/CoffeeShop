@@ -28,7 +28,6 @@ public class UserController {
     @GetMapping("/login")
     public ResponseEntity<User> login(@RequestBody User form){
         User user = userService.getUser(form.getEmail(), form.getPassword());
-        System.out.println("vdvfvfdvvfvvfdfvvv");
         System.out.println(form);
         if (user == null) {
             return ResponseEntity.badRequest().build();
