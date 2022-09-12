@@ -17,15 +17,13 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table (name = "Product")
-
+@Table (name = "product")
 public class Product {
     @Id
     @GeneratedValue
-    private long productId;
+    private Long productId;
     private String name;
     private int quantity;
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private int small_price;
     private int medium_price;
     private int large_price;
