@@ -36,6 +36,11 @@ public class ProductService implements IProductService{
         return productRepository.findByName(name);
     }
 
+    public Product getProductById(Long productId) {
+        log.info("Fetching product with id {}", productId);
+        return productRepository.findById(productId).get();
+    }
+
     public List<Product> getAllProducts(){
         return productRepository.findAll();
     }
