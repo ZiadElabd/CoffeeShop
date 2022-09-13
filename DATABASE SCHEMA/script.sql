@@ -8,6 +8,7 @@ CREATE TABLE user
   email VARCHAR(45) NOT NULL UNIQUE,
   password VARCHAR(100) NOT NULL,
   image VARCHAR(150),
+  image_svg VARCHAR(150),
   role_id INT,
   PRIMARY KEY (user_id)
 );

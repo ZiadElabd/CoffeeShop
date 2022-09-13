@@ -25,4 +25,5 @@ public class Product {
     private int medium_price;
     private int large_price;
     private String image;
+    private String image_svg;
 }

@@ -12,6 +12,7 @@ import java.net.URI;
 
 
 @RestController
+@CrossOrigin
 @RequiredArgsConstructor
 public class UserController {
 
@@ -25,7 +26,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody User form){
         User user = userService.getUser(form.getEmail(), form.getPassword());
         System.out.println(form);
