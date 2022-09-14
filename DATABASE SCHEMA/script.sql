@@ -3,12 +3,11 @@ USE sql11518896;
 
 CREATE TABLE user
 (
-  user_id INT NOT NULL,
+  user_id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(45) NOT NULL,
   email VARCHAR(45) NOT NULL UNIQUE,
   password VARCHAR(100) NOT NULL,
   image VARCHAR(150),
-  image_svg VARCHAR(150),
   role_id INT,
   PRIMARY KEY (user_id)
 );
@@ -16,8 +15,8 @@ CREATE TABLE user
 
 CREATE TABLE role
 (
-	role_id INT NOT NULL,
-    roleName VARCHAR(30) NOT NULL,
+	role_id INT NOT NULL AUTO_INCREMENT,
+    role_name VARCHAR(30) NOT NULL,
     PRIMARY KEY (role_id)
 );
 
@@ -46,13 +45,14 @@ ALTER TABLE user_role
 
 CREATE TABLE product
 (
-  product_id INT NOT NULL,
+  product_id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(50) NOT NULL,
   quantity INT DEFAULT 0,
   small_price INT NOT NULL,
   medium_price INT NOT NULL,
   large_price INT NOT NULL,
   image VARCHAR(150) NOT NULL,
+  image_svg VARCHAR(150) NOT NULL,
   PRIMARY KEY (product_id)
 );
 
@@ -74,28 +74,3 @@ CREATE TABLE cart
       ON UPDATE CASCADE
       ON DELETE CASCADE
 );
-
-
-/*  NOT YET
-
-CREATE TABLE orders
-(
-  orderId INT NOT NULL,
-  date DATE NOT NULL,
-  userId INT NOT NULL,
-  PRIMARY KEY (orderId),
-  FOREIGN KEY (userId) REFERENCES user(userId)
-);
-
-CREATE TABLE orderitem
-(
-  orderId INT NOT NULL,
-  itemId INT NOT NULL,
-  size VARCHAR(45) NOT NULL,
-  PRIMARY KEY (orderId, itemId, size),
-  FOREIGN KEY (orderId) REFERENCES orders(orderId),
-  FOREIGN KEY (itemId, size) REFERENCES item(itemId, size)
-);
-
-
-*/

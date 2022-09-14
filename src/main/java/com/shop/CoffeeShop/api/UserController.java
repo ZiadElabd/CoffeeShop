@@ -26,13 +26,13 @@ public class UserController {
     }
 
 
-    @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestBody User form){
-        User user = userService.getUser(form.getEmail(), form.getPassword());
-        System.out.println(form);
-        if (user == null) {
-            return ResponseEntity.badRequest().build();
-        }
-        return ResponseEntity.ok().body(user);
-    }
+//    @PostMapping("/login")
+//    public ResponseEntity<User> login(@RequestBody User form){
+//        User user = userService.getUser(form.getEmail(), form.getPassword());
+//        System.out.println(form);
+//        if (user == null) {
+//            return ResponseEntity.badRequest().build();
+//        }
+//        return ResponseEntity.ok().body(user);
+//    }
 }
