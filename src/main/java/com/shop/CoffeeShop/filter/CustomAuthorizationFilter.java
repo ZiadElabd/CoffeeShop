@@ -24,14 +24,21 @@ import java.util.*;
 @Slf4j
 public class CustomAuthorizationFilter extends OncePerRequestFilter {
 
+    private static final Set<String> SERVLET_PATHS_WITHOUT_TOKEN = Collections.unmodifiableSet(
+            new HashSet<>(Arrays.asList(
+            "/login",
+            "/register",
+            "/product/get",
+            "/product/get/**")));
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        System.out.println("kkkkkkkkkkkkkk");
+        System.out.println(request.getServletPath());
 
-        if(request.getServletPath().equals("/login") || request.getServletPath().equals("/register")) {
+        if(SERVLET_PATHS_WITHOUT_TOKEN.contains(request.getServletPath())) {
             filterChain.doFilter(request, response);
             return;
         }
