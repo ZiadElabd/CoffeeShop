@@ -88,13 +88,10 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
         com.shop.CoffeeShop.domain.User u = userService.getUser(user.getUsername());
 
-        Map<String, Object> tokens = new HashMap<>();
-        tokens.put("access_token", access_token);
-
-        tokens.put("user", u);
+        u.setAccess_token(access_token);
 
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        new ObjectMapper().writeValue(response.getOutputStream(), tokens);
+        new ObjectMapper().writeValue(response.getOutputStream(), u);
 
     }
 }

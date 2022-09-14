@@ -35,4 +35,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles = new ArrayList<>();
 
+
+    @Transient
+    private String access_token;
+
 }
