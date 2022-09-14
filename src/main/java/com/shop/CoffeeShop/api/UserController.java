@@ -12,7 +12,7 @@ import java.net.URI;
 
 
 @RestController
-@CrossOrigin
+@CrossOrigin("*")
 @RequiredArgsConstructor
 public class UserController {
 
