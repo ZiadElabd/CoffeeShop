@@ -58,14 +58,18 @@ public class UserService implements IUserService, UserDetailsService {
 
     @Override
     public User saveUser(User user) {
-        User existingUser
-                = userRepository.findById(user.getUserId()).orElse(null);
+
+        User existingUser = null;
+
+        if (user.getUserId() != null)
+            existingUser = userRepository.findById(user.getUserId()).orElse(null);
+
         if (existingUser == null){
-        log.info("Saving new user {} to the database", user.getEmail());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        User res =  userRepository.save(user);
-        this.addRoleToUser(user.getEmail(), "ROLE_USER");
-        return res;
+            log.info("Saving new user {} to the database", user.getEmail());
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            User res =  userRepository.save(user);
+            this.addRoleToUser(user.getEmail(), "ROLE_USER");
+            return res;
         }
         else throw new UserAlreadyExistsException("Customer already exists!!");
     }

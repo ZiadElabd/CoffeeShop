@@ -123,7 +123,7 @@ public class CoffeeShopApplication {
 //			userService.saveRole(new Role(null, "ROLE_USER"));
 //			userService.saveRole(new Role(null, "ROLE_ADMIN"));
 //
-//			userService.saveUser(new User(null, "ADMIN", "admin", "123456", "", new ArrayList<>()));
+//			userService.saveUser(new User(null, "ADMIN", "admin", "123456", "", new ArrayList<>(), null));
 //
 //			userService.addRoleToUser("admin", "ROLE_ADMIN");
 

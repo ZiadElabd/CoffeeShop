@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/login", "/register").permitAll();
 
         http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/product/get", "/product/get/**")
+                .antMatchers(HttpMethod.GET, "/product/get", "/product/get/**", "/swagger-ui/index.html", "/v2/api-docs")
                 .permitAll();
 
         http.authorizeRequests()
