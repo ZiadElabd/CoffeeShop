@@ -23,10 +23,13 @@ public class ProductService implements IProductService{
 
     @Override
     public Product addProduct(Product product) {
-        Product existingProduct = productRepository.findById(product.getProductId()).orElse(null);
+        Product existingProduct = null;
+        if(product.getProductId() != null)
+            existingProduct = productRepository.findById(product.getProductId()).orElse(null);
+
         if (existingProduct == null){
-        log.info("add new product {} to the database", product.getName());
-        return productRepository.save(product);
+            log.info("add new product {} to the database", product.getName());
+            return productRepository.save(product);
         }
         else {
             throw new ProductAlreadyExistsException("Product is already exist");
@@ -39,9 +42,10 @@ public class ProductService implements IProductService{
             throw new NoSuchUserExistsException("Product Not Found");
         }
         else {
-        log.info(" remove product {} from database", product.getName());
-        productRepository.delete(product);
-    }}
+            log.info(" remove product {} from database", product.getName());
+            productRepository.delete(product);
+        }
+    }
 
     @Override
     public Product getProduct(String name) {

@@ -28,7 +28,7 @@ import java.util.*;
 @Slf4j
 @RequiredArgsConstructor
 public class UserService implements IUserService, UserDetailsService {
-@Autowired
+
     private final UserRepository userRepository;
 
 
