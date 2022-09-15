@@ -1,12 +1,15 @@
 package com.shop.CoffeeShop.service;
 
 
+import com.shop.CoffeeShop.Exceptions.NoSuchUserExistsException;
+import com.shop.CoffeeShop.Exceptions.UserAlreadyExistsException;
 import com.shop.CoffeeShop.domain.Role;
 import com.shop.CoffeeShop.domain.User;
 import com.shop.CoffeeShop.repository.RoleRepository;
 import com.shop.CoffeeShop.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,14 +21,16 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
 @Slf4j
 @RequiredArgsConstructor
 public class UserService implements IUserService, UserDetailsService {
-
+@Autowired
     private final UserRepository userRepository;
+
 
     private final RoleRepository roleRepository;
 
@@ -53,11 +58,16 @@ public class UserService implements IUserService, UserDetailsService {
 
     @Override
     public User saveUser(User user) {
+        User existingUser
+                = userRepository.findById(user.getUserId()).orElse(null);
+        if (existingUser == null){
         log.info("Saving new user {} to the database", user.getEmail());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User res =  userRepository.save(user);
         this.addRoleToUser(user.getEmail(), "ROLE_USER");
         return res;
+        }
+        else throw new UserAlreadyExistsException("Customer already exists!!");
     }
 
     public Role saveRole(Role role) {
@@ -74,9 +84,15 @@ public class UserService implements IUserService, UserDetailsService {
     }
 
     public User getUser(String email) {
+        User existingUser
+                = userRepository.findByEmail(email);
+        if(existingUser==null){
+            throw new NoSuchUserExistsException("User Not Found");
+        }
+        else {
         log.info("Fetching user {}", email);
         return userRepository.findByEmail(email);
-    }
+    }}
 
     @Override
     public User getUser(String email, String password) {
