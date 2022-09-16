@@ -49,12 +49,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/login", "/register").permitAll();
 
         http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/product/get", "/product/get/**", "/swagger-ui/index.html", "/v2/api-docs")
+                .antMatchers(HttpMethod.GET, "/product/get", "/product/get/**", "/swagger-ui/index.html", "/v2/api-docs", "/cart/get/**")
+                .permitAll();
+
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/cart/add")
                 .permitAll();
 
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/product/save")
                 .hasAnyAuthority("ROLE_ADMIN");
+
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.DELETE, "/cart/delete/**")
+                        .permitAll();
 
         http.authorizeRequests()
                 .antMatchers(HttpMethod.DELETE, "/product/delete/**")
