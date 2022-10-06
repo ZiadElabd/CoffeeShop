@@ -1,4 +1,4 @@
-package com.shop.CoffeeShop.service;
+package com.shop.CoffeeShop.service.implementation;
 
 
 import com.shop.CoffeeShop.Exceptions.NoSuchProductExistsException;
@@ -6,6 +6,7 @@ import com.shop.CoffeeShop.Exceptions.NoSuchUserExistsException;
 import com.shop.CoffeeShop.Exceptions.ProductAlreadyExistsException;
 import com.shop.CoffeeShop.domain.Product;
 import com.shop.CoffeeShop.repository.ProductRepository;
+import com.shop.CoffeeShop.service.IProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ import java.util.List;
 @Transactional
 @Slf4j
 @RequiredArgsConstructor
-public class ProductService implements IProductService{
+public class ProductService implements IProductService {
 
     private final ProductRepository productRepository;
 

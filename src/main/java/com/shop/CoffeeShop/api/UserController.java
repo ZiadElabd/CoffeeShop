@@ -1,8 +1,7 @@
 package com.shop.CoffeeShop.api;
 
 import com.shop.CoffeeShop.domain.User;
-import com.shop.CoffeeShop.service.UserService;
-import lombok.Data;
+import com.shop.CoffeeShop.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +15,7 @@ import java.net.URI;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+    private final IUserService userService;
 
 
     @PostMapping("/register")
@@ -25,14 +24,4 @@ public class UserController {
         return ResponseEntity.created(uri).body(userService.saveUser(user));
     }
 
-
-//    @PostMapping("/login")
-//    public ResponseEntity<User> login(@RequestBody User form){
-//        User user = userService.getUser(form.getEmail(), form.getPassword());
-//        System.out.println(form);
-//        if (user == null) {
-//            return ResponseEntity.badRequest().build();
-//        }
-//        return ResponseEntity.ok().body(user);
-//    }
 }

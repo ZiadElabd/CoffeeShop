@@ -2,7 +2,7 @@ package com.shop.CoffeeShop.security;
 
 import com.shop.CoffeeShop.filter.CustomAuthenticationFilter;
 import com.shop.CoffeeShop.filter.CustomAuthorizationFilter;
-import com.shop.CoffeeShop.service.UserService;
+import com.shop.CoffeeShop.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
 
-    private final UserService userService;
+    private final IUserService userService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override

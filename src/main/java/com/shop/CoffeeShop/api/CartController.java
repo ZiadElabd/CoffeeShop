@@ -3,7 +3,7 @@ package com.shop.CoffeeShop.api;
 
 import com.shop.CoffeeShop.domain.Cart;
 import com.shop.CoffeeShop.domain.CartItem;
-import com.shop.CoffeeShop.service.CartService;
+import com.shop.CoffeeShop.service.ICartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CartController {
 
-    private final CartService cartService;
+    private final ICartService cartService;
 
 
     @GetMapping("/get/{user_id}")

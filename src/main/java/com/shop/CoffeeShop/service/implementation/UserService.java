@@ -1,4 +1,4 @@
-package com.shop.CoffeeShop.service;
+package com.shop.CoffeeShop.service.implementation;
 
 
 import com.shop.CoffeeShop.Exceptions.NoSuchUserExistsException;
@@ -7,6 +7,7 @@ import com.shop.CoffeeShop.domain.Role;
 import com.shop.CoffeeShop.domain.User;
 import com.shop.CoffeeShop.repository.RoleRepository;
 import com.shop.CoffeeShop.repository.UserRepository;
+import com.shop.CoffeeShop.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

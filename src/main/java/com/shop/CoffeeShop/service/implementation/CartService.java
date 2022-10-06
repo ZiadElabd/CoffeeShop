@@ -1,7 +1,8 @@
-package com.shop.CoffeeShop.service;
+package com.shop.CoffeeShop.service.implementation;
 
 import com.shop.CoffeeShop.domain.*;
 import com.shop.CoffeeShop.repository.CartRepository;
+import com.shop.CoffeeShop.service.ICartService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import java.util.List;
 @Transactional
 @Slf4j
 @RequiredArgsConstructor
-public class CartService {
+public class CartService implements ICartService {
     private final CartRepository cartRepository;
 
     public Cart add_to_cart(Cart cart) {

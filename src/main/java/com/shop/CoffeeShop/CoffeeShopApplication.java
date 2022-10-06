@@ -1,9 +1,8 @@
 package com.shop.CoffeeShop;
 
-import com.shop.CoffeeShop.domain.*;
 import com.shop.CoffeeShop.repository.CartRepository;
-import com.shop.CoffeeShop.service.ProductService;
-import com.shop.CoffeeShop.service.UserService;
+import com.shop.CoffeeShop.service.IProductService;
+import com.shop.CoffeeShop.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,9 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootApplication
 @EnableSwagger2
@@ -32,7 +28,7 @@ public class CoffeeShopApplication {
 
 
 	@Bean
-	CommandLineRunner run(UserService userService, ProductService productService, CartRepository cartRepository) {
+	CommandLineRunner run(IUserService userService, IProductService productService, CartRepository cartRepository) {
 		return args -> {
 //			User user = userService.getUser("bgfbfgbgf@gfbgfb");
 //			log.info(user.toString());
